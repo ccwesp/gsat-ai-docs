@@ -10,7 +10,7 @@
 <nav class="nav"><a href="index.html">← 首頁</a></nav>
 <main>
   <h1>隱私權政策 / Privacy Policy</h1>
-  <p class="meta">最後更新日期：2026 年 8 月 1 日</p>
+  <p class="meta">最後更新日期：2026 年 11 月 15 日</p>
 
   <p>GSAT-AI（學測英文）尊重並保護您的隱私。本政策說明我們如何處理您的個人資訊。</p>
 
@@ -25,7 +25,7 @@
   </ul>
 
   <h2>AI 功能與第三方服務</h2>
-  <p>GSAT-AI 提供兩種 AI 模式：</p>
+  <p>GSAT-AI 提供多種 AI 模式：</p>
 
   <h3>1. Apple Intelligence（裝置端模型）</h3>
   <ul>
@@ -39,6 +39,20 @@
     <li>開發者不經手、不留存、不會看到您的查詢內容</li>
     <li>API Key 僅加密存放在您裝置的 Keychain 中，不會離開裝置</li>
     <li>各 AI 供應商對您資料的處理方式，請參閱該供應商的隱私權政策</li>
+  </ul>
+
+  <h3>3. 使用者自行設定的自訂伺服器</h3>
+  <ul>
+    <li>您可以在設定中填入自己的 OpenAI 相容伺服器（例如在家用網路自架的 Ollama、LM Studio）</li>
+    <li>查詢內容會由您的裝置直接傳送到該伺服器；該伺服器由您自行掌控，不是開發者的伺服器</li>
+  </ul>
+
+  <h2>相機與圖片（掃描翻譯）</h2>
+  <ul>
+    <li>掃描翻譯會使用相機，或讓您從相簿選取圖片。App 只會讀取您選取的那張圖片，不會存取整個相簿。</li>
+    <li>選擇「原生辨識」時，文字辨識完全在您的裝置上進行，圖片不會離開裝置。</li>
+    <li>選擇「AI 辨識」時，您框選的圖片會由您的裝置直接傳送到您在設定中選擇的 AI 供應商；若您設定的是自訂伺服器，圖片會傳送到該伺服器，該伺服器由您自行掌控。首次使用前，App 會先徵求您的同意。</li>
+    <li>開發者不會接收、儲存或存取您的圖片。App 不會保存原始圖片，只有在您按下「儲存」時保存辨識出的文字與譯文。</li>
   </ul>
 
   <h2>資料儲存</h2>
@@ -60,12 +74,13 @@
   <p>如有任何隱私權相關問題，請聯繫：</p>
   <ul>
     <li>Email：<a href="mailto:ccw.matt@gmail.com">ccw.matt@gmail.com</a></li>
+    <li>GitHub：<a href="https://github.com/ccwesp">https://github.com/ccwesp</a></li>
   </ul>
 
   <hr style="border:none;border-top:1px solid var(--border);margin:2.5em 0;">
 
   <h1>Privacy Policy (English)</h1>
-  <p class="meta">Last Updated: August 1, 2026</p>
+  <p class="meta">Last Updated: November 15, 2026</p>
 
   <p>GSAT-AI respects and protects your privacy.</p>
 
@@ -77,6 +92,15 @@
   <ul>
     <li><strong>On-device AI (Apple Intelligence):</strong> All processing happens locally on your device.</li>
     <li><strong>User-provided API Keys:</strong> If you choose to use a remote AI model, your queries are sent directly from your device to the AI provider you selected. The developer does not intercept or store this data.</li>
+    <li><strong>User-configured custom server:</strong> You may enter your own OpenAI-compatible server (for example, Ollama or LM Studio on your home network). Your queries are sent directly from your device to that server, which you control; it is not operated by the developer.</li>
+  </ul>
+
+  <h2>Camera and Images (Scan &amp; Translate)</h2>
+  <ul>
+    <li>Scan &amp; Translate uses the camera, or lets you pick images from your photo library. The app reads only the images you select and does not access your whole library.</li>
+    <li>With <strong>On-device recognition</strong>, text recognition happens entirely on your device and images never leave it.</li>
+    <li>With <strong>AI recognition</strong>, the area you crop is sent directly from your device to the AI provider you selected in Settings (or to your own custom server, which you control). The app asks for your consent before the first upload.</li>
+    <li>The developer never receives, stores, or accesses your images. Original photos are not saved; only the recognized text and translation are saved, and only when you tap "Save".</li>
   </ul>
 
   <h2>Data Storage</h2>
