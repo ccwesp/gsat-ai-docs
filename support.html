@@ -4,64 +4,303 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>支援資訊 / Support — GSAT-AI</title>
-<link rel="stylesheet" href="style.css">
+<style>
+  :root{
+    --paper:#faf7f1;
+    --paper-2:#f2ede3;
+    --ink:#1b2a41;
+    --ink-2:#3d4f6b;
+    --muted:#7a869a;
+    --line:#e3dccd;
+    --accent:#b9832f;      /* 琥珀金 */
+    --accent-deep:#8f6118;
+    --card:#fffdf8;
+    --ok:#2e7d4f;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  .serif{font-family:"Noto Serif TC","Songti TC",Georgia,serif}
+
+  /* ── 頁首 ─────────────────────────── */
+  header.hero{
+    position:relative;
+    padding:64px 20px 84px;
+    background:
+      radial-gradient(1200px 500px at 85% -10%, #efe6d2 0%, transparent 60%),
+      var(--paper);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .kicker{
+    display:inline-block;
+    font-size:12px;letter-spacing:.35em;
+    color:var(--accent-deep);
+    border:1px solid var(--accent);
+    border-radius:999px;
+    padding:6px 14px 6px 17px;
+    margin-bottom:22px;
+    background:#fff;
+  }
+  h1.serif{
+    font-size:clamp(34px,7vw,56px);
+    line-height:1.15;
+    letter-spacing:.02em;
+    max-width:14em;
+  }
+  h1 .en{display:block;font-size:.42em;color:var(--muted);letter-spacing:.14em;margin-top:.5em;font-weight:500}
+  .hero p.lede{
+    margin-top:20px;max-width:34em;color:var(--ink-2);font-size:18px;
+  }
+
+  /* 頁首右側的「單字卡」示意 */
+  .flash{
+    position:absolute;right:6vw;top:56px;
+    width:240px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:0 24px 48px -24px rgba(27,42,65,.35);
+    padding:22px 22px 18px;
+    transform:rotate(3deg);
+  }
+  .flash .word{font-size:34px;font-weight:700;letter-spacing:.01em}
+  .flash .pos{color:var(--accent-deep);font-size:14px;margin-left:8px;font-style:italic}
+  .flash .def{margin-top:10px;color:var(--ink-2);font-size:15px}
+  .flash .lv{
+    margin-top:14px;display:inline-block;
+    font-size:12px;color:#fff;background:var(--accent);
+    border-radius:999px;padding:3px 12px;
+  }
+  .flash .review{
+    margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;
+    font-size:13px;color:var(--muted);
+  }
+  .flash .review b{color:var(--ok);font-weight:600}
+  @media (max-width:860px){
+    .flash{position:static;transform:rotate(1.2deg);margin:34px auto 0;}
+    header.hero{padding-bottom:48px}
+  }
+
+  /* ── 版面 ─────────────────────────── */
+  main{max-width:880px;margin:0 auto;padding:0 20px 80px}
+  section{margin-top:72px}
+  .sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:30px}
+  .sec-no{font-family:Georgia,serif;font-size:15px;color:var(--accent-deep);letter-spacing:.2em}
+  .sec-head h2{font-size:26px;letter-spacing:.04em}
+  .sec-head .en{color:var(--muted);font-size:13px;letter-spacing:.18em;margin-left:auto;white-space:nowrap}
+
+  /* 離線亮點：左右排版 */
+  .feature{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;
+  }
+  @media (max-width:760px){.feature{grid-template-columns:1fr}}
+  .feature h3{font-size:21px;margin-bottom:10px}
+  .feature p{color:var(--ink-2)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .chip{
+    font-size:14px;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);
+    border-radius:999px;padding:7px 16px;
+  }
+  .chip b{color:var(--accent-deep);font-weight:600}
+
+  /* FAQ 手風琴 */
+  details{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+  details summary{
+    cursor:pointer;list-style:none;
+    padding:18px 20px;
+    display:flex;align-items:center;gap:14px;
+    font-weight:600;font-size:16.5px;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary .q{
+    flex:none;width:28px;height:28px;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--paper-2);color:var(--accent-deep);
+    font-family:Georgia,serif;font-size:15px;
+  }
+  details summary .arrow{margin-left:auto;color:var(--muted);transition:transform .2s ease;font-size:13px}
+  details[open] .arrow{transform:rotate(90deg)}
+  details .a{padding:0 20px 18px 62px;color:var(--ink-2);font-size:15.5px}
+  details .a b{color:var(--ink)}
+  details .a code{background:var(--paper-2);border-radius:6px;padding:2px 7px;font-size:14px}
+
+  /* 資料備份 */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:680px){.duo{grid-template-columns:1fr}}
+  .duo .box{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;
+  }
+  .duo .box h4{font-size:16px;margin-bottom:6px}
+  .duo .box p{font-size:15px;color:var(--ink-2)}
+  .duo .tag{
+    display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent-deep);
+    margin-bottom:8px;
+  }
+
+  /* 系統需求 */
+  .req{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  }
+  @media (max-width:680px){.req{grid-template-columns:1fr}}
+  .req .item{
+    border-top:2px solid var(--ink);
+    padding-top:12px;
+  }
+  .req .item .big{font-size:22px;font-weight:700;letter-spacing:.01em}
+  .req .item .sub{font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.55}
+
+  /* 聯絡 */
+  .contact{
+    background:var(--ink);color:#f5f1e8;
+    border-radius:20px;
+    padding:38px 34px;
+    display:flex;flex-wrap:wrap;align-items:center;gap:24px;
+  }
+  .contact h2{font-size:24px;letter-spacing:.04em;color:#fff}
+  .contact p{font-size:15px;color:#c8cfe0;margin-top:6px}
+  .contact a.btn{
+    margin-left:auto;
+    display:inline-block;
+    background:var(--accent);color:#fff;
+    text-decoration:none;
+    font-weight:600;font-size:16px;
+    padding:14px 28px;border-radius:12px;
+  }
+  @media (max-width:680px){.contact a.btn{margin-left:0}}
+  .contact a.btn:hover{background:var(--accent-deep)}
+
+  /* 版本資訊 */
+  .meta-table{width:100%;border-collapse:collapse;font-size:15.5px}
+  .meta-table th,.meta-table td{border-bottom:1px solid var(--line);padding:13px 6px;text-align:left;vertical-align:top}
+  .meta-table th{color:var(--muted);font-weight:500;width:9em;font-size:14px;letter-spacing:.08em}
+  .meta-table td{color:var(--ink-2)}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 20px 40px;text-align:center;
+    color:var(--muted);font-size:13.5px;letter-spacing:.06em;
+  }
+  footer a{color:var(--accent-deep);text-decoration:none}
+</style>
 </head>
 <body>
-<nav class="nav"><a href="index.html">← 首頁</a></nav>
+
+<header class="hero">
+  <span class="kicker">GSAT-AI｜學測英文</span>
+  <h1 class="serif">用得順利，<br>是我們最在意的事<span class="en">SUPPORT</span></h1>
+  <p class="lede">常見問題、備份方式與系統需求都在這裡。找不到答案？直接寫信給開發者，我們會盡快回覆。</p>
+
+  <div class="flash" aria-hidden="true">
+    <div><span class="word">resilient</span><span class="pos">adj.</span></div>
+    <div class="def">有韌性的；能快速恢復的</div>
+    <span class="lv">LEVEL 5</span>
+    <div class="review">下次複習：<b>明天</b>（間隔重複排程）</div>
+  </div>
+</header>
+
 <main>
-  <h1>支援資訊 / Support</h1>
-  <p class="subtitle">GSAT-AI - 學測英文學習 App</p>
 
-  <h2>常見問題 FAQ</h2>
+  <section>
+    <div class="sec-head"><span class="sec-no">01</span><h2 class="serif">常見問題</h2><span class="en">FAQ</span></div>
 
-  <h3>App 需要網路嗎？</h3>
-  <p>不需要。內建超過 7,000 字與 200 片語的字典、單字庫、間隔複習、本機測驗、文法庫與經典名句全部離線可用。只有 AI 生成功能（出題、翻譯、作文批改等）在使用雲端模型時需要網路；使用 Apple Intelligence 本機模型則完全離線。</p>
+    <details open>
+      <summary><span class="q">Q</span>App 需要網路嗎？<span class="arrow">▸</span></summary>
+      <div class="a">不需要。<b>內建超過 7,000 字與 200 片語</b>的字典、單字庫、間隔複習、本機測驗、文法庫與經典名句<b>全部離線可用</b>。只有 AI 生成功能（出題、翻譯、作文批改等）在使用雲端模型時需要網路；使用 Apple Intelligence 本機模型則完全離線。</div>
+    </details>
 
-  <h3>免費版有什麼功能？</h3>
-  <p>免費版包含完整的離線字典、單字庫管理、間隔重複複習、本機單字測驗（中譯英/聽力拼字/英譯中）、內建文法庫、經典名句。AI 智慧功能（出題、閱讀文章、作文批改、翻譯、問 AI）需要購買完整版。</p>
+    <details>
+      <summary><span class="q">Q</span>免費版有什麼功能？<span class="arrow">▸</span></summary>
+      <div class="a">免費版包含完整的離線字典、單字庫管理、間隔重複複習、本機單字測驗（中譯英／聽力拼字／英譯中）、內建文法庫與經典名句。<b>AI 智慧功能</b>（出題、閱讀文章、作文批改、翻譯、問 AI、掃描翻譯）需要購買完整版。</div>
+    </details>
 
-  <h3>購買完整版後可以在多台裝置使用嗎？</h3>
-  <p>可以。使用同一個 Apple ID 登入的所有裝置都可以使用，在新裝置上點「回復購買」即可。</p>
+    <details>
+      <summary><span class="q">Q</span>購買完整版後可以在多台裝置使用嗎？<span class="arrow">▸</span></summary>
+      <div class="a">可以。使用同一個 Apple ID 登入的所有裝置都可以使用，在新裝置上點「<b>回復購買</b>」即可。</div>
+    </details>
 
-  <h3>如何備份我的學習資料？</h3>
-  <ul>
-    <li><strong>iCloud 自動備份</strong>：在設定頁開啟「iCloud 自動同步備份」，App 會自動備份到您的 iCloud</li>
-    <li><strong>手動匯出</strong>：設定 → 備份 → 匯出，會產生 JSON 檔案可另存</li>
-  </ul>
+    <details>
+      <summary><span class="q">Q</span>AI 模型怎麼選？<span class="arrow">▸</span></summary>
+      <div class="a"><b>Apple Intelligence</b>（推薦新手）：免費、離線、不需設定，但品質較基本（需 iOS 26+ 且裝置支援）。<br><b>遠端模型</b>：到各供應商申請 API Key 填入設定頁即可使用，推薦 Anthropic Claude 或 OpenAI GPT，品質最好。也可以填入自架的 OpenAI 相容伺服器（例如 Ollama、LM Studio）。</div>
+    </details>
 
-  <h3>AI 模型怎麼選？</h3>
-  <ul>
-    <li><strong>Apple Intelligence</strong>（推薦新手）：免費、離線、不需設定，但品質較基本（需 iOS 26+ 且裝置支援）</li>
-    <li><strong>遠端模型</strong>：到各供應商申請 API Key 填入設定頁即可使用。推薦 Anthropic Claude 或 OpenAI GPT 品質最好</li>
-  </ul>
+    <details>
+      <summary><span class="q">Q</span>API Key 安全嗎？<span class="arrow">▸</span></summary>
+      <div class="a">API Key 只存在您裝置的 <b>Keychain</b>（iOS 最安全的儲存區），不會上傳到任何伺服器、不會出現在備份檔中。</div>
+    </details>
 
-  <h3>API Key 安全嗎？</h3>
-  <p>API Key 只存在您裝置的 Keychain（iOS 最安全的儲存區），不會上傳到任何伺服器、不會出現在備份檔中。</p>
+    <details>
+      <summary><span class="q">Q</span>為什麼有時 AI 會顯示「格式不正確」？<span class="arrow">▸</span></summary>
+      <div class="a">AI 模型偶爾會回傳不完整的回應，App 會<b>自動重試一次</b>。如果持續發生，可以換一個模型、稍後再試，或切換到 Apple Intelligence 本機模型。</div>
+    </details>
+  </section>
 
-  <h3>為什麼有時 AI 會顯示「格式不正確」？</h3>
-  <p>AI 模型偶爾會回傳不完整的回應，App 會自動重試一次。如果持續發生，可以嘗試：換一個模型、稍後再試、或切換到 Apple Intelligence 本機模型。</p>
+  <section>
+    <div class="sec-head"><span class="sec-no">02</span><h2 class="serif">學習資料備份</h2><span class="en">BACKUP</span></div>
+    <div class="duo">
+      <div class="box">
+        <span class="tag">推薦</span>
+        <h4>iCloud 自動備份</h4>
+        <p>在設定頁開啟「iCloud 自動同步備份」，App 會自動備份到您的 iCloud，換機、重裝都不怕。</p>
+      </div>
+      <div class="box">
+        <span class="tag">手動</span>
+        <h4>匯出 JSON 檔</h4>
+        <p>設定 → 備份 → 匯出，會產生 JSON 檔案，可以自己另存或傳到電腦保存。</p>
+      </div>
+    </div>
+  </section>
 
-  <h2>系統需求</h2>
-  <ul>
-    <li>iOS 18.6 或以上</li>
-    <li>Apple Intelligence 功能需要 iOS 26 以上且裝置支援</li>
-    <li>約 50 MB 儲存空間</li>
-  </ul>
+  <section>
+    <div class="sec-head"><span class="sec-no">03</span><h2 class="serif">系統需求</h2><span class="en">REQUIREMENTS</span></div>
+    <div class="req">
+      <div class="item"><div class="big">iOS 18.6+</div><div class="sub">安裝 GSAT-AI 的基本需求</div></div>
+      <div class="item"><div class="big">iOS 26+</div><div class="sub">Apple Intelligence 本機 AI 需 iOS 26 以上且裝置支援</div></div>
+      <div class="item"><div class="big">約 50 MB</div><div class="sub">儲存空間（含離線字典與文法庫）</div></div>
+    </div>
+  </section>
 
-  <h2>聯絡開發者</h2>
-  <p>如果遇到問題或有建議，歡迎聯繫：</p>
-  <ul>
-    <li><strong>Email</strong>：<a href="mailto:ccw.matt@gmail.com">ccw.matt@gmail.com</a></li>
-  </ul>
-  <p>我們會盡快回覆您的問題。</p>
+  <section>
+    <div class="sec-head"><span class="sec-no">04</span><h2 class="serif">版本資訊</h2><span class="en">VERSION</span></div>
+    <table class="meta-table">
+      <tr><th>目前版本</th><td>1.0.5</td></tr>
+      <tr><th>內建字典</th><td>7,000+ 單字、200+ 片語（離線）</td></tr>
+      <tr><th>支援 AI</th><td>Apple Intelligence、Anthropic Claude、OpenAI、Google Gemini、xAI Grok、DeepSeek、Qwen、OpenCode Zen，以及自架 OpenAI 相容伺服器</td></tr>
+    </table>
+  </section>
 
-  <h2>版本資訊</h2>
-  <ul>
-    <li>目前版本：1.0.0</li>
-    <li>內建字典：7,000+ 字</li>
-    <li>支援 AI 供應商：Apple Intelligence、Anthropic Claude、OpenAI、Google Gemini、xAI Grok、DeepSeek、Qwen、OpenCode Zen</li>
-  </ul>
+  <section>
+    <div class="contact">
+      <div>
+        <h2 class="serif">聯絡開發者</h2>
+        <p>遇到問題或有建議，歡迎寫信，我們會盡快回覆。</p>
+      </div>
+      <a class="btn" href="mailto:ccw.matt@gmail.com">ccw.matt@gmail.com</a>
+    </div>
+  </section>
+
 </main>
-<footer>© 2026 GSAT-AI</footer>
+
+<footer>
+  GSAT-AI｜學測英文 · <a href="index.html">首頁</a> · <a href="privacy.html">隱私權政策</a><br>
+  © 2026 GSAT-AI
+</footer>
+
 </body>
 </html>
